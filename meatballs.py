@@ -1,24 +1,20 @@
 import requests
 import config
 import json
-import today
+from datetime import datetime
 
-def getPunctuation(number):
-    if (int(number) % 2) == 1:
-        return "."
-    else:
-        return ""
-
-def parseCode(code):
-    if code == 1:
-        return "Yep" + getPunctuation(today.getNumber())
-    elif code == 2:
-        return "Nope. But it is mashed potatos" + getPunctuation(today.getNumber())
-    else:
-        return "Nope" + getPunctuation(today.getNumber())
+# Twitter dont allow same message everyday. 
+# This will remove punctuation if day % 2 == 1
+def fixString(word):
+    number = datetime.now().strftime("%w")
+    if (int(number) % 2) == 1:    
+        word = word[:-1] if word.endswith('.') else word
+    return word
 
 def isIt ():
     response = requests.get(config.MEATBALL_LAMDA)
     jsonResponse = json.loads(response.text)
-    code = jsonResponse['code']
-    return parseCode(code)
+    word = jsonResponse['msg']
+    return fixString(word)
+
+print(isIt())

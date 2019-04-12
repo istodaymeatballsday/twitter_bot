@@ -65,7 +65,7 @@ functions:
   tweet:
     handler: handler.tweet
     events:
-      - schedule: rate(24 hours)
+      - schedule: cron(0 6 ? * MON-FRI *)
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

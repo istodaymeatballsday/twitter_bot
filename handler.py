@@ -5,10 +5,6 @@ import today
 from twython import Twython, TwythonError
 
 def tweet(event, context):
-
-    if today.getDay() == "Sat" or today.getDay() == "Sun":
-        return
-
     twitter = Twython(config.APP_KEY, config.APP_SECRET,
                       config.OAUTH_TOKEN, config.OAUTH_TOKEN_SECRET)
     message = ""
@@ -31,4 +27,5 @@ def tweet(event, context):
         "body": json.dumps(body)
     }
 
+    print(response)
     return response
