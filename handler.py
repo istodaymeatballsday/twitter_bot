@@ -1,7 +1,6 @@
 import json
 import config
 import meatballs
-import today
 from twython import Twython, TwythonError
 
 def tweet(event, context):
