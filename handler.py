@@ -7,7 +7,8 @@ def tweet(event, context):
     twitter = Twython(config.APP_KEY, config.APP_SECRET,
                       config.OAUTH_TOKEN, config.OAUTH_TOKEN_SECRET)
     message = ""
-    isTodayMeatballsDay = meatballs.isIt()
+    hashtags = " #chalmersftw #ChalmersUniversity @chalmersuniv @chalmersnyheter"
+    isTodayMeatballsDay = meatballs.isIt() + hashtags
 
     try:
         twitter.update_status(status=isTodayMeatballsDay)
